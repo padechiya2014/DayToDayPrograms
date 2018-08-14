@@ -4,102 +4,200 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StringManipulation
+namespace LinkedList
 {
     class Program
     {
-        //static void Main(string[] args)
-        //{
-        //    // Case 1  - Reverse a string using char array
-        //    String inputCase1 = "GeeksforGeeks";
-
-        //    // getBytes() method to convert string 
-        //    // into bytes[].
-        //    char[] strAsCharArray = inputCase1.ToCharArray();
-
-        //    Array.Reverse(strAsCharArray);
-        //    char[] result =
-        //               new char[strAsCharArray.Length];
-
-        //    // Store result in reverse order into the
-        //    // result byte[]
-        //    for (int i = 0; i < strAsCharArray.Length; i++)
-        //        result[i] =
-        //         strAsCharArray[strAsCharArray.Length - i - 1];
-
-        //    Console.WriteLine(new String(result));
-        //    Console.ReadLine();
+        static void Main(string[] args)
+        {
+            // Case 1 - Find middle element
+            FindMiddleElement llist = new FindMiddleElement();
+            for (int i = 5; i > 0; --i)
+            {
+                llist.push(i);
+                llist.printList();
+                llist.printMiddle();
+            }
 
 
-        //    // Case 2 - Reverse a string using Byte Array
-        //    String inputCase2 = "GeeksforGeeks";
+            //// Case 2 - Delete the first occurence
+            DeleteFirstOccurence dlList = new DeleteFirstOccurence();
 
-        //    byte[] strAsByteArray = Encoding.ASCII.GetBytes(inputCase2);
+            dlList.push(7);
+            dlList.push(1);
+            dlList.push(3);
+            dlList.push(2);
 
-        //    byte[] resultCase2 =
-        //              new byte[strAsByteArray.Length];
-        //    // Store result in reverse order into the
-        //    // result byte[]
-        //    for (int i = 0; i < strAsCharArray.Length; i++)
-        //    {
-        //        resultCase2[i] =
-        //         strAsByteArray[strAsByteArray.Length - i - 1];
-        //    }
+            Console.WriteLine("\nCreated Linked list is:");
+            Console.ReadLine();
+            dlList.printList();
 
+            dlList.deleteNode(1); // Delete node at position 4
 
-        //    Console.WriteLine(Encoding.ASCII.GetString(resultCase2));
-        //    Console.ReadLine();
-
-        //    // Case 3 - Using built in reverse() method of the StringBuilder class
-        //    Console.WriteLine("Enter the string to reverse :");
-        //    string name = Console.ReadLine();
-
-        //    StringBuilder builder = new StringBuilder();
-        //    for (int i = name.Length - 1; i >= 0; i--)
-        //    {
-        //        builder.Append(name[i]);
-        //    }
-        //    string newName = builder.ToString();
-
-        //    Console.WriteLine(newName);
-        //    Console.ReadLine();
-
-        //    // Case 4 - Using inbuild collections
-        //    String input = "Geeks For Geeks";
-        //    char[] hello = input.ToCharArray();
-        //    List<char> trial1 = new List<char>();
-
-        //    foreach (var item in hello)
-        //    {
-        //        trial1.Add(item);
-        //    }
+            Console.WriteLine("\nLinked List after Deletion at position 4:");
+            Console.ReadLine();
+            dlList.printList();
 
 
-        //    trial1.Reverse();
+            // Case 3 - Delete all the occurences
+            DeleteFirstOccurence dlListCase3 = new DeleteFirstOccurence();
+            dlList.push(7);
+            dlList.push(2);
+            dlList.push(3);
+            dlList.push(2);
+            dlList.push(8);
+            dlList.push(1);
+            dlList.push(2);
+            dlList.push(2);
+            dlList.push(4);
+            dlList.push(5);
+            dlList.push(4);
+            dlList.push(4);
+            dlList.push(4);
+            dlList.push(3);
+            dlList.push(2);
+            dlList.push(1);
 
-        //    foreach (var item in trial1)
-        //    {
-        //        Console.WriteLine(item);
-        //        Console.ReadLine();
+            Console.WriteLine("\nCreated Linked list is:");
+            Console.ReadLine();
+            dlList.printList();
 
-        //    }
+            dlList.deleteAllMatchingNodes(4); // Delete node at position 4
 
-        //    // Distinct Permutations of a string
-        //    String str = "fvvfhvgv";
+            Console.WriteLine("\nLinked List after Deletion at position 4:");
+            Console.ReadLine();
+            dlList.printList();
 
-        //    Console.Write(DistinctPermutationOfString.countDistinctPermutations(str));
 
-        //    // Print all possible strings of length k that can be formed from a set of n characters
-        //    Console.WriteLine("First Test");
-        //    char[] set1 = { 'a', 'b' };
-        //    int k = 3;
-        //    PossibleStringsOfLengthK.printAllKLength(set1, k);
+            // Case 4 - Delete the last element
+            DeleteFirstOccurence dlListCase4 = new DeleteFirstOccurence();
+            dlList.push(4);
+            dlList.push(5);
+            dlList.push(4);
+            dlList.push(4);
+            dlList.push(4);
+            dlList.push(3);
+            dlList.push(2);
+            dlList.push(1);
 
-        //    Console.WriteLine("\nSecond Test");
-        //    char[] set2 = { 'a', 'b', 'c', 'd' };
-        //    k = 1;
-        //    PossibleStringsOfLengthK.printAllKLength(set2, k);
+            Console.WriteLine("\nCreated Linked list is:");
+            Console.ReadLine();
+            dlList.printList();
 
-        //}
+            dlList.DeleteLastElemnt(); // Delete node at position 4
+
+            Console.WriteLine("\nLinked List after Deletion of last element:");
+            Console.ReadLine();
+            dlList.printList();
+
+            // Case 5 - Print the reverse of a Linked List
+            Reverse ReverseList = new Reverse();
+            ReverseList.push(4);
+            ReverseList.push(5);
+            ReverseList.push(4);
+            ReverseList.push(4);
+            ReverseList.push(4);
+            ReverseList.push(3);
+            ReverseList.push(2);
+            ReverseList.push(1);
+
+            Console.WriteLine("\nCreated Linked list is:");
+            Console.ReadLine();
+            ReverseList.printList();
+
+            ReverseList.printReverse();
+
+            // Case 6 - Delete the Last occurence of the given key
+            DeleteLastOccurence delLastOccList = new DeleteLastOccurence();
+            delLastOccList.push(4);
+            delLastOccList.push(4);
+            delLastOccList.push(5);
+            delLastOccList.push(4);
+            delLastOccList.push(3);
+            delLastOccList.push(2);
+            delLastOccList.push(1);
+
+            Console.WriteLine("\nCreated Linked list is:");
+            Console.ReadLine();
+            delLastOccList.printList();
+
+            delLastOccList.deleteLastOccuringNode(4);
+
+            Console.WriteLine("\nCreated Linked list is:");
+            Console.ReadLine();
+            delLastOccList.printList();
+
+            // Case 7 - Detect a loop in a singly Linked List
+            DetectLoop dtLoop = new DetectLoop();
+            //dtLoop.push(10);
+            dtLoop.push(20);
+            dtLoop.push(4);
+            dtLoop.push(15);
+            dtLoop.push(10);
+
+            // Create a loop
+            dtLoop.Head.Next.Next.Next.Next = dtLoop.Head;
+
+            if (dtLoop.detectLoopUsingDictionary(dtLoop.Head))
+            {
+                Console.WriteLine("Loop found");
+                Console.ReadLine();
+            }
+            if (dtLoop.detectLoopUsingSlowFastPointers(dtLoop.Head))
+            {
+                Console.WriteLine("Loop found");
+                Console.ReadLine();
+            }
+
+            else
+            {
+                Console.WriteLine("No Loop");
+                Console.ReadLine();
+            }
+
+
+            // Case 8 - Detect and Remove a loop
+            dtLoop.DetectAndRemoveLoop(dtLoop.Head);
+
+            // Case 9 - Rotate Linked List
+            RotateList rotateList = new RotateList();
+            rotateList.push(60);
+            rotateList.push(50);
+            rotateList.push(40);
+            rotateList.push(30);
+            rotateList.push(20);
+            rotateList.push(10);
+
+
+            Console.WriteLine("\nCreated Linked list is:");
+            Console.ReadLine();
+            rotateList.printList();
+
+            rotateList.RotateLinkedList(4);
+
+            Console.WriteLine("\nRotated Linked list is:");
+            Console.ReadLine();
+            rotateList.printList();
+
+            // Case 10 - Rotate and reverse a linked list
+            RotateList rotateListCase10 = new RotateList();
+            rotateList.push(8);
+            rotateList.push(7);
+            rotateList.push(6);
+            rotateList.push(5);
+            rotateList.push(4);
+            rotateList.push(3);
+            rotateList.push(2);
+            rotateList.push(1);
+            Console.WriteLine("\nCreated Linked list is:");
+            Console.ReadLine();
+            rotateList.printList();
+
+            rotateList.ReverseAndRotateList(3);
+
+            Console.WriteLine("\nRotated Linked list is:");
+            Console.ReadLine();
+            rotateList.printList();
+        }
     }
 }
