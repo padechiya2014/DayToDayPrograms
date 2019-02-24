@@ -1,0 +1,54 @@
+USE [TEST]
+GO
+
+/****** Object:  Table [dbo].[Company_Maru]    Script Date: 02/24/2019 10:49:55 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Company_Maru](
+	[secid] [int] NOT NULL,
+	[attr_name] [varchar](50) NOT NULL,
+	[attr_val] [varchar](50) NOT NULL
+) ON [PRIMARY]
+GO
+
+
+1	Currency	USD
+1	Name	International Business machine
+1	Ticker	IBM
+2	Name	General motors
+2	Currency	USD
+2	Ticker	GM
+3	Name	Shashway
+3	Ticker	SSE
+3	Currency	AU
+USE [TEST]
+GO
+
+INSERT INTO [dbo].[Company_Maru]
+           ([secid]
+           ,[attr_name]
+           ,[attr_val])
+     VALUES
+           (<secid, int,>
+           ,<attr_name, varchar(50),>
+           ,<attr_val, varchar(50),>)
+GO
+
+
+
+;with CTE_tbl as 
+(
+select secid,attr_name,attr_val,
+ROW_NUMBER() OVER (PARTITION BY secid Order By attr_name) as row_no
+from DATA_VALUES )
+
+select secid,
+MAX(CASE when row_no = 2 then attr_val end) as Name,
+MAX(CASE when row_no = 3 then attr_val end) as Ticker,
+MAX(CASE when row_no = 1 then attr_val end) as Currency
+FROM CTE_tbl 
+GROUP BY secid;
